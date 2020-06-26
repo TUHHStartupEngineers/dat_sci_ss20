@@ -226,7 +226,7 @@ bike_data_cleaned_tbl <- bike_data_tbl %>%
                             filter(nchar(.$id) == 4)
 
 
-# 5.0 Get all color variations for each bike
+# 5.0 Get all color variations for each bike ----
 
 # Extract all bike urls
 bike_url_vec <- bike_data_cleaned_tbl %>% 
@@ -267,7 +267,7 @@ bike_data_colors_tbl <- bike_data_cleaned_tbl %>%
 
 saveRDS(bike_data_colors_tbl, "bike_data_colors_tbl.rds")
 
-# 6.0 Create the urls for each variation
+# 6.0 Create the urls for each variation ----
 bike_data_wrangled_tbl <- bike_data_colors_tbl %>%
 
                                 # Remove unnecessary columns
