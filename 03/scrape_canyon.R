@@ -173,6 +173,7 @@ get_bike_data <- function(url) {
                         map(na_if, "not defined") %>%
                         map(na_if, "") %>%
                         map(~mutate_at(.,"dimension56", as.numeric)) %>%
+                        map(~mutate_at(.,"price", as.numeric)) %>%
                         bind_rows() %>%
                         as_tibble() %>%
                         rowid_to_column(var='position') %>%
@@ -221,10 +222,16 @@ for (i in seq_along(bike_category_tbl$url)) {
         print(i)
 }
 
+# We have some duplicates
+bike_data_cleaned_tbl %>%
+    group_by(id) %>%
+    filter(n()>1) %>%
+    View()
+
 # Filter non Canyon bikes (based on id length) and add an empty column for the colors
 bike_data_cleaned_tbl <- bike_data_tbl %>%
-                            filter(nchar(.$id) == 4)
-
+                            filter(nchar(.$id) == 4) %>%
+                            distinct(id, .keep_all = T)
 
 # 5.0 Get all color variations for each bike ----
 
