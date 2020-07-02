@@ -275,7 +275,7 @@ bike_data_sizes_tbl %>%
 # Wide is Reader Friednly. People tend to read data as wide format, where columns are categories and the cell contents are values
 
 # 7.1 spread(): Long to Wide ----
-- <- bike_data_sizes_tbl %>%
+bike_data_years_tbl <- bike_data_sizes_tbl %>%
     mutate(total_stock_value = price_dollar * stock_availability) %>%
     filter(!is.na(year)) %>%
     select(year, category_1, total_stock_value) %>%
